@@ -1,16 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown, Search } from "lucide-react";
-
-import { cn } from "@/lib/utils";
+import { ChevronsUpDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
-  CommandItem,
   CommandList,
 } from "@/components/ui/command";
 import {
