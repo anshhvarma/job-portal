@@ -90,7 +90,7 @@ const JobDetailsPage = async (
           </div>
 
           {/* Title form */}
-          <TitleForm/>
+          <TitleForm initialData={job} jobId={job.id}/>
           {/* initialData={job} jobId={job.id}   */}
         </div>
       </div>
