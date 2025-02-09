@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import JobPublishAction from "./_components/job-publish-action";
 import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
+import CategoryForm from "./_components/category-form";
 import TitleForm from "./_components/title-form";
 
 const JobDetailsPage = async (
@@ -31,6 +32,10 @@ const JobDetailsPage = async (
     }
   });
 
+  const categories = await db.category.findMany({
+    orderBy: { name : "asc"}
+  });
+
   if (!job) {
     return redirect('/admin/jobs');
   }
@@ -38,7 +43,8 @@ const JobDetailsPage = async (
   const requiredFields = [
     job.title,
     job.description,
-    job.imageUrl
+    job.imageUrl,
+    job.categoryId
   ]
 
   const totalFields = requiredFields.length;
@@ -91,7 +97,11 @@ const JobDetailsPage = async (
 
           {/* Title form */}
           <TitleForm initialData={job} jobId={job.id}/>
-          {/* initialData={job} jobId={job.id}   */}
+          {/* Category form */}
+          <CategoryForm initialData={job} jobId={job.id} options={categories.map((category)=> ({
+            label : category.name,
+            value: category.id,
+          }))}/>
         </div>
       </div>
     </div>
