@@ -9,6 +9,7 @@ import { IconBadge } from "@/components/icon-badge";
 import CategoryForm from "./_components/category-form";
 import TitleForm from "./_components/title-form";
 import ImageForm from "./_components/image-form";
+import ShortDescription from "./_components/short-description";
 
 const JobDetailsPage = async (
   { params }: { params: { jobId: string } }
@@ -106,6 +107,7 @@ const JobDetailsPage = async (
           <ImageForm 
           initialData={job} jobId={job.id}
           />
+          <ShortDescription initialData={job} jobId={job.id}/>
         </div>
       </div>
     </div>
