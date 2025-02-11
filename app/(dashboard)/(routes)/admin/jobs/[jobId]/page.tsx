@@ -10,6 +10,10 @@ import CategoryForm from "./_components/category-form";
 import TitleForm from "./_components/title-form";
 import ImageForm from "./_components/image-form";
 import ShortDescription from "./_components/short-description";
+import ShiftTimingForm from "./_components/shift-timing-mode";
+import HourlyRateForm from "./_components/hourly-rate-form";
+import WorkModeForm from "./_components/work-mode.form";
+import YearsOfExpForm from "./_components/work-experience-form";
 
 const JobDetailsPage = async (
   { params }: { params: { jobId: string } }
@@ -108,6 +112,10 @@ const JobDetailsPage = async (
           initialData={job} jobId={job.id}
           />
           <ShortDescription initialData={job} jobId={job.id}/>
+          <ShiftTimingForm initialData={job} jobId={job.id}/>
+          <HourlyRateForm initialData={job} jobId={job.id}/>
+          <WorkModeForm initialData={job} jobId={job.id}/>
+          <YearsOfExpForm initialData={job} jobId={job.id}/>
         </div>
       </div>
     </div>
