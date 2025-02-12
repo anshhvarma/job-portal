@@ -5,7 +5,7 @@ const {
 } = require("@google/generative-ai");
 
 // const apiKey = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI("AIzaSyD6onCzrxU7SpgQG8PSf6dv99RGHMPulZs");
+const genAI = new GoogleGenerativeAI("AIzaSyA3zQtwpsCjcebJ5-xx1UAfn7wG6aMwl_s");
 
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
@@ -22,7 +22,7 @@ const generationConfig = {
 async function getGenerativeAIResponse(prompt: string) {
   const safetySettings = [
     {
-      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+      category: HarmCategory.HARM_CATEGORY_HARASSMENT,  
       threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     },
     {

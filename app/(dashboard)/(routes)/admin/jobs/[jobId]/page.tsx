@@ -14,6 +14,7 @@ import ShiftTimingForm from "./_components/shift-timing-mode";
 import HourlyRateForm from "./_components/hourly-rate-form";
 import WorkModeForm from "./_components/work-mode.form";
 import YearsOfExpForm from "./_components/work-experience-form";
+import JobDescription from "./_components/job-description";
 
 const JobDetailsPage = async (
   { params }: { params: { jobId: string } }
@@ -93,7 +94,8 @@ const JobDetailsPage = async (
       )}
 
       {/* Container Layout */}
-      <div className="grid grid-cols-3 md:grid-cols-2 gap-6 mt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+        {/* left container */}
         <div>
           {/* title */}
           <div className="flex items-center gap-x-2">
@@ -116,6 +118,16 @@ const JobDetailsPage = async (
           <HourlyRateForm initialData={job} jobId={job.id}/>
           <WorkModeForm initialData={job} jobId={job.id}/>
           <YearsOfExpForm initialData={job} jobId={job.id}/>
+          
+        </div>
+        {/* Right Container */}
+        <div>
+          
+        </div>
+        {/* description */}
+
+        <div className="col-span-2">
+        <JobDescription initialData={job} jobId={job.id}/>
         </div>
       </div>
     </div>
