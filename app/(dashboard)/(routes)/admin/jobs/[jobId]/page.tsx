@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ArrowLeft, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, ListCheck } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import JobPublishAction from "./_components/job-publish-action";
@@ -15,6 +15,7 @@ import HourlyRateForm from "./_components/hourly-rate-form";
 import WorkModeForm from "./_components/work-mode.form";
 import YearsOfExpForm from "./_components/work-experience-form";
 import JobDescription from "./_components/job-description";
+import TagsForm from "./_components/tags-form";
 
 const JobDetailsPage = async (
   { params }: { params: { jobId: string } }
@@ -40,7 +41,7 @@ const JobDetailsPage = async (
   });
 
   const categories = await db.category.findMany({
-    orderBy: { name : "asc"}
+    orderBy: { name: "asc" }
   });
 
   if (!job) {
@@ -104,30 +105,36 @@ const JobDetailsPage = async (
           </div>
 
           {/* Title form */}
-          <TitleForm initialData={job} jobId={job.id}/>
+          <TitleForm initialData={job} jobId={job.id} />
           {/* Category form */}
-          <CategoryForm initialData={job} jobId={job.id} options={categories.map((category)=> ({
-            label : category.name,
+          <CategoryForm initialData={job} jobId={job.id} options={categories.map((category) => ({
+            label: category.name,
             value: category.id,
-          }))}/>
-          <ImageForm 
-          initialData={job} jobId={job.id}
+          }))} />
+          <ImageForm
+            initialData={job} jobId={job.id}
           />
-          <ShortDescription initialData={job} jobId={job.id}/>
-          <ShiftTimingForm initialData={job} jobId={job.id}/>
-          <HourlyRateForm initialData={job} jobId={job.id}/>
-          <WorkModeForm initialData={job} jobId={job.id}/>
-          <YearsOfExpForm initialData={job} jobId={job.id}/>
-          
+          <ShortDescription initialData={job} jobId={job.id} />
+          <ShiftTimingForm initialData={job} jobId={job.id} />
+          <HourlyRateForm initialData={job} jobId={job.id} />
+          <WorkModeForm initialData={job} jobId={job.id} />
+          <YearsOfExpForm initialData={job} jobId={job.id} />
         </div>
-        {/* Right Container */}
-        <div>
-          
-        </div>
-        {/* description */}
 
+        {/* Right Container */}
+        <div className="space-y-6">
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListCheck} />
+              <h2 className="text-xl text-neutral-700"> Job Requiremets</h2>
+            </div>
+              <TagsForm initialData={job} jobId={job.id} />
+          </div>
+        </div>
+
+        {/* description */}
         <div className="col-span-2">
-        <JobDescription initialData={job} jobId={job.id}/>
+          <JobDescription initialData={job} jobId={job.id} />
         </div>
       </div>
     </div>
