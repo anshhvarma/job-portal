@@ -182,6 +182,8 @@ const TagsForm = ({ initialData, jobId }: TagsFormProps) => {
       </div>
 
       {/* display the tags if not editing  */}
+
+
         {!isEditing && <div className="flex items-center flex-wrap gap-2">
         {initialData.tags.length > 0 ? (
           initialData.tags.map((tag, index) => (
