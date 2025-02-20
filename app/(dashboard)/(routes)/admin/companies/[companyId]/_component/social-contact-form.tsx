@@ -119,7 +119,7 @@ const CompanySocialForm = ({
             <div className="col-span-3">
               {initialData.address_line_1  && (
                 <div className="flex items-center gap-2 justify-start">
-                  <MapPin className="w-3 h-3 mt-1" />
+                  <MapPin className="w-3 h-3 " />
                   <div>
                     <p className="text-sm text-muted-foreground">
                       {initialData.address_line_1}, {initialData.address_line_2}

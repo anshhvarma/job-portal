@@ -9,6 +9,8 @@ import CompanyName from "./_component/company-name-form";
 import CompanyDescription from "./_component/description-form";
 import CompanyLogo from "./_component/logo-form";
 import CompanySocialForm from "./_component/social-contact-form";
+import CoverImageForm from "./_component/cover-image-form";
+import CompanyOverviewForm from "./_component/company-overview";
 const CompanyEditPage = async ({params}: {params: {companyId: string}}) => {
 
       // Validate company id from mongo db
@@ -104,7 +106,11 @@ const CompanyEditPage = async ({params}: {params: {companyId: string}}) => {
             </div>
 
           <CompanySocialForm initialData={company} companyId={company.id}/>
+          <CoverImageForm initialData={company} companyId={company.id} />
           </div>
+        </div>
+        <div className="col-span-2">
+        <CompanyOverviewForm initialData={company} companyId={company.id} />
         </div>
       </div>
     </div>
