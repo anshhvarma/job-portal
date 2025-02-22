@@ -11,6 +11,7 @@ import CompanyLogo from "./_component/logo-form";
 import CompanySocialForm from "./_component/social-contact-form";
 import CoverImageForm from "./_component/cover-image-form";
 import CompanyOverviewForm from "./_component/company-overview";
+import WhyJoinUs from "./_component/whyJoinUs";
 const CompanyEditPage = async ({params}: {params: {companyId: string}}) => {
 
       // Validate company id from mongo db
@@ -111,6 +112,9 @@ const CompanyEditPage = async ({params}: {params: {companyId: string}}) => {
         </div>
         <div className="col-span-2">
         <CompanyOverviewForm initialData={company} companyId={company.id} />
+        </div>
+        <div className="col-span-2">
+        <WhyJoinUs initialData={company} companyId={company.id} />
         </div>
       </div>
     </div>

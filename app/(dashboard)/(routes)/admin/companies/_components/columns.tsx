@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, Eye, MoreHorizontal, Pencil } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
   
 
 
@@ -22,7 +23,20 @@ export type CompanyColumns = {
 export const columns: ColumnDef<CompanyColumns>[] = [
   {
     accessorKey: "logo",
-    header: "Logo"
+    header: "Logo",
+    cell: ({ row }) => {
+      const { logo, name } = row.original;
+      return (
+        <div className="w-20 h-20 flex items-center justify-center relative rounded-md overflow-hidden"> 
+          <Image 
+          src={logo}
+        alt="Logo"
+        className="w-full h-full object-contain"
+        fill
+          />
+        </div>
+      );
+    }
   },
   {
     accessorKey: "name",

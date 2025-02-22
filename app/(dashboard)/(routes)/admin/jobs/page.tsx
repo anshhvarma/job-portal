@@ -25,7 +25,8 @@ const page = async () => {
       userId
     },
     include: {
-      category: true
+      category: true,
+      company: true
     },
     orderBy: {
       createdAt: "desc"
@@ -35,7 +36,7 @@ const page = async () => {
   const formattedJobs: JobsColumns[] = jobs.map((job) => ({
     id: job.id,
     title : job.title,
-    company : "",
+    company : job.company ? job.company?.name : "N/A",
     category : job.category ? job.category?.name : "N/A",
     isPublished : job.isPublished,
     createdAt : job.createdAt ? format(job.createdAt.toLocaleString(), "MMMM do, yyyy") : "N/A",

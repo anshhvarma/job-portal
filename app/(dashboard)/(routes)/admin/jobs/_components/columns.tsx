@@ -58,7 +58,7 @@ export const columns: ColumnDef<JobsColumns>[] = [
           className={cn(
             "border px-2 py-1 text-xs rounded-md text-center w-24",
             isPublished
-              ? "border-emerald-100/80 bg-emerald-500 "
+              ? "border-emerald-500 bg-emerald-100/80 "
               : "border-red-500 bg-red-100/80"
           )}
         >
