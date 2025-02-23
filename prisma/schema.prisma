@@ -104,3 +104,9 @@ model Resumes{
   updatedAt DateTime @default(now())
   @@index([userProfileId], name : "idx_userProfileId")
 }
+
+model Assessment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String
+  type String?
+}

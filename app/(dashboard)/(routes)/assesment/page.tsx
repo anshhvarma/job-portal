@@ -3,15 +3,47 @@
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function HomePage() {
   const router = useRouter();
-  
-  const handleCategorySelect = (category: string) => {
-    if (category === 'professional') {
-      router.push('/assesment/dashboard');
-    } else {
-      router.push('/assesment/career-library');
+  const [loading, setLoading] = useState(false);
+
+  const createAssessment = async (type: string) => {
+    try {
+      setLoading(true);
+      const response = await axios.post('/api/assessment', { type });
+
+      if (response.status !== 200) {
+        throw new Error('Failed to create assessment');
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCategorySelect = async (type: string) => {
+    const assessment = await createAssessment(type);
+    if (assessment) {
+      switch (type) {
+        case 'professional':
+          router.push('/assesment/dashboard');
+          break;
+        case 'exploring':
+          router.push('/assesment/career-library');
+          break;
+        case 'undecided':
+          router.push('/assesment/career-library');
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -29,8 +61,9 @@ export default function HomePage() {
               <Button 
                 onClick={() => handleCategorySelect('professional')}
                 className="w-full"
+                disabled={loading}
               >
-                Select
+                {loading ? 'Loading...' : 'Select'}
               </Button>
             </CardContent>
           </Card>
@@ -44,8 +77,9 @@ export default function HomePage() {
               <Button 
                 onClick={() => handleCategorySelect('exploring')}
                 className="w-full"
+                disabled={loading}
               >
-                Select
+                {loading ? 'Loading...' : 'Select'}
               </Button>
             </CardContent>
           </Card>
@@ -59,8 +93,9 @@ export default function HomePage() {
               <Button 
                 onClick={() => handleCategorySelect('undecided')}
                 className="w-full"
+                disabled={loading}
               >
-                Select
+                {loading ? 'Loading...' : 'Select'}
               </Button>
             </CardContent>
           </Card>
