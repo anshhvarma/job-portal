@@ -40,7 +40,7 @@ let options =[
 
 
 const formSchema = z.object({
-  yearOfExperience: z.string().min(1)
+  yearsOfExperience: z.string().min(1)
 });
 
 const YearsOfExpForm = ({initialData, jobId} : YearsOfExpFormProps) => {
@@ -50,7 +50,7 @@ const YearsOfExpForm = ({initialData, jobId} : YearsOfExpFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      yearOfExperience: initialData?.yearOfExperience || ""
+      yearsOfExperience: initialData?.yearsOfExperience || ""
     },
   })
 
@@ -69,7 +69,7 @@ const YearsOfExpForm = ({initialData, jobId} : YearsOfExpFormProps) => {
 
 const toggleEditing = () => setIsEditing((current) => !current);
 
-const seletedOption = options.find(option => option.value === initialData.yearOfExperience)
+const seletedOption = options.find(option => option.value === initialData.yearsOfExperience)
 
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
@@ -87,9 +87,9 @@ const seletedOption = options.find(option => option.value === initialData.yearOf
       </Button>
       </div>
 
-      {/* display the yearOfExperience if not editing  */}
+      {/* display the yearsOfExperience if not editing  */}
 
-      {!isEditing && <p className={cn("text-sm mt-2",!initialData?.yearOfExperience && "text-neutral-500 italic")}>{seletedOption?.label || "No Experience Added"}</p>}
+      {!isEditing && <p className={cn("text-sm mt-2",!initialData?.yearsOfExperience && "text-neutral-500 italic")}>{seletedOption?.label || "No Experience Added"}</p>}
 
       {/* on editing mode display the input  */}
       {isEditing && (
@@ -97,7 +97,7 @@ const seletedOption = options.find(option => option.value === initialData.yearOf
         <form className="space-y-4 mt-4" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField 
           control={form.control}
-          name="yearOfExperience"
+          name="yearsOfExperience"
           render={({field}) => (
             <FormItem>
               <FormControl>

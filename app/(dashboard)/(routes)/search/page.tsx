@@ -12,7 +12,7 @@ interface SearchPageProps {
         categoryId: string;
         createdAtFilter: string;
         shiftTiming: string;
-        yearOfExperience: string;
+        yearsOfExperience: string;
         workMode: string;
     }
 }

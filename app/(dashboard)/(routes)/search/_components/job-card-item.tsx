@@ -67,6 +67,28 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
     }
   };
 
+const experienceData = [
+  {
+    value: "0",
+    label: "Fresher",
+  },
+  {
+    value: "2",
+    label: "0-2 years",
+  },
+  {
+    value: "3",
+    label: "2-4 years",
+  },
+  {
+    value: "5",
+    label: "5+ years",
+  },
+];
+  const getExperienceLabel = ( value : string) =>{
+    const experience = experienceData.find(exp => exp.value === value)
+    return experience ? experience.label : "NA"
+  }
   return (
     <motion.div layout>
       <Card>
@@ -137,10 +159,10 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
                 {formattedString(job.workMode)}
               </div>
             )}
-            {job.yearOfExperience && (
+            {job.yearsOfExperience && (
               <div className=" text-xs text-muted-foreground flex items-center">
                 <Network className="h-3 w-3 mr-1 " />
-                {formattedString(job.yearOfExperience)}
+                {getExperienceLabel(job.yearsOfExperience)}
               </div>
             )}
             {job.hourlyRate && (
