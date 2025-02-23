@@ -43,11 +43,10 @@ const router = useRouter();
   const onDelete = async () => {
     try {
         setIsLoading(true);
-        
         await axios.delete(`/api/jobs/${jobId}`);
         toast.success("Job deleted successfully");
+        router.push("/admin/jobs");
         router.refresh();
-        return router.push("/admin/jobs");
         } catch (error) {
             toast.error("Failed to delete job");
             console.log((error as Error)?.message);
