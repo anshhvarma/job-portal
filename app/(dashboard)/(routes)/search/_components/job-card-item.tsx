@@ -15,6 +15,7 @@ import Box from "@/components/box";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
+  Bookmark,
   BookmarkCheck,
   BriefcaseBusiness,
   Currency,
@@ -26,6 +27,9 @@ import { cn, formattedString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { truncate } from "lodash";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface JobCardItemProps {
   job: Job;
@@ -40,7 +44,28 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
   const company = typeJob.company;
 
   const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
-  const SavedUserIcon = BookmarkCheck;
+  const isSavedByUser = userId && job.savedUsers?.includes(userId);
+  const SavedUserIcon = isSavedByUser ? BookmarkCheck : Bookmark;
+  const router = useRouter();
+
+  const onClickSaveJob = async () => {
+    try {
+      setIsBookmarkLoading(true);
+      if (isSavedByUser) {
+        await axios.patch(`/api/jobs/${job.id}/removeSavedJobToCollection`);
+        toast.success("Removed From Collection");
+      } else {
+        await axios.patch(`/api/jobs/${job.id}/savedJobToCollection`);
+        toast.success("Saved to Collection");
+      }
+      router.refresh();
+    } catch (error) {
+      toast.error("Error While Saving! Please try again later");
+      console.log(`Error : ${(error as Error)?.message}`);
+    } finally {
+      setIsBookmarkLoading(false);
+    }
+  };
 
   return (
     <motion.div layout>
@@ -57,7 +82,16 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
               {isBookmarkLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <SavedUserIcon className={cn("w-4 h-4")} />
+                <div onClick={onClickSaveJob}>
+                  <SavedUserIcon
+                    className={cn(
+                      "w-4 h-4",
+                      isSavedByUser
+                        ? "text-emerald-500"
+                        : "text-muted-foreground"
+                    )}
+                  />
+                </div>
               )}
             </Button>
           </Box>
@@ -150,9 +184,10 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
             </Link>
             <Button
               variant={"outline"}
-              className="w-full text-white hover:bg-blue-800 bg-blue-800/90"
+              className="w-full text-white hover:bg-blue-800 bg-blue-800/90 hover:text-white"
+              onClick={onClickSaveJob}
             >
-              Save
+              {isSavedByUser ? "Saved" : "Save For Later"}
             </Button>
           </Box>
         </div>
