@@ -110,6 +110,7 @@ const CompanyEditPage = async ({params}: {params: {companyId: string}}) => {
           <CoverImageForm initialData={company} companyId={company.id} />
           </div>
         </div>
+        
         <div className="col-span-2">
         <CompanyOverviewForm initialData={company} companyId={company.id} />
         </div>

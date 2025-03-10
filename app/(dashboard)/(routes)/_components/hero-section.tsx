@@ -15,33 +15,33 @@ export default function HeroSection() {
     const [ rightDesignScope, rightDesignanimate ] =useAnimate();
     const [ rightPointerScope, rightPointeranimate ] =useAnimate();
 
-    useEffect(()=>{
-        leftDesignanimate([
-            [leftDesignScope.current, {opacity:[1]}, {duration: 0.5}],
-            [leftDesignScope.current, {y:0, x:0},{duration : 0.5}]
-        ]);
-        leftPointeranimate([
-            [leftPointerScope.current, {opacity: 1}, {duration: 0.5}],
-            [leftPointerScope.current, {y: 0, x:-100}, {duration: 0.5}],
-            [leftPointerScope.current, {x:0, y:[0,16,0]}, {duration: 0.5, ease: 'easeInOut'}],
-        ]);
-        rightDesignanimate([
-            [rightDesignScope.current, {opacity:[1]}, {duration: 0.5, delay:1.5}],
-            [rightDesignScope.current, {y:0, x:0},{duration : 0.5}]
-        ]);
-        rightPointeranimate([
-            [rightPointerScope.current, {opacity: 1}, {duration: 0.5, delay: 1.5}],
-            [rightPointerScope.current, {y: 0, x:175}, {duration: 0.5}],
-            [rightPointerScope.current, {x:0, y:[0,20,0]}, {duration: 0.5, ease: 'easeInOut'}],
-        ]);
-    })
+    // useEffect(()=>{
+    //     leftDesignanimate([
+    //         [leftDesignScope.current, {opacity:[1]}, {duration: 0.5}],
+    //         [leftDesignScope.current, {y:0, x:0},{duration : 0.5}]
+    //     ]);
+    //     leftPointeranimate([
+    //         [leftPointerScope.current, {opacity: 1}, {duration: 0.5}],
+    //         [leftPointerScope.current, {y: 0, x:-100}, {duration: 0.5}],
+    //         [leftPointerScope.current, {x:0, y:[0,16,0]}, {duration: 0.5, ease: 'easeInOut'}],
+    //     ]);
+    //     rightDesignanimate([
+    //         [rightDesignScope.current, {opacity:[1]}, {duration: 0.5, delay:1.5}],
+    //         [rightDesignScope.current, {y:0, x:0},{duration : 0.5}]
+    //     ]);
+    //     rightPointeranimate([
+    //         [rightPointerScope.current, {opacity: 1}, {duration: 0.5, delay: 1.5}],
+    //         [rightPointerScope.current, {y: 0, x:175}, {duration: 0.5}],
+    //         [rightPointerScope.current, {x:0, y:[0,20,0]}, {duration: 0.5, ease: 'easeInOut'}],
+    //     ]);
+    // })
 
     return (
         <section className="py-24 overflow-x-clip  " style={{
             cursor:`url(${cursorYou.src}), auto`
         }}>
             <div className="container pt-24 relative">
-                <motion.div ref={leftDesignScope}
+                {/* <motion.div ref={leftDesignScope}
                 initial={{opacity: 0 , y: 100, x: -100}}
                 className="absolute -left-32 top-16 hidden lg:block"
                 drag
@@ -65,7 +65,7 @@ export default function HeroSection() {
 
                 <motion.div ref={rightPointerScope} initial={{opacity:0, x: 275 ,y: 100}} className="absolute right-80 -top-4 hidden lg:block">
                     <Pointer name="admin" />
-                </motion.div>
+                </motion.div> */}
 
                 <div className="flex justify-center">
                     <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full text-neutral-950 font-semibold">

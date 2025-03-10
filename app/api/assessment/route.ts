@@ -14,7 +14,7 @@ export const POST = async (req: Request) => {
     const assessment = await db.assessment.create({
       data: {
         userId,
-        type,
+        type
       },
     });
 

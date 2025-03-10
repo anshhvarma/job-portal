@@ -12,7 +12,7 @@ interface PageContentsProps {
   userId: string | null;
 }
 const PageContents = ({ jobs, userId }: PageContentsProps) => {
-  if (jobs.length === 0) {
+  if (jobs.length === 0 ) {
     return (
       <div className="flex items-center justify-center flex-col">
         <div className="w-full h-[60vh] relative flex items-center justify-center">

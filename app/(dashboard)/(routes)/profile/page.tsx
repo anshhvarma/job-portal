@@ -27,7 +27,7 @@ const ProfilePage = async () => {
         resumes:{
           orderBy:{
             createdAt: "desc"
-          }
+          }   
         }
       }
     })

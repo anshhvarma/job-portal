@@ -83,8 +83,8 @@ model UserProfile{
   email String?
   contact String?
   appliedJobs AppliedJobs[]
-  resumes Resumes[]
-  activeResumeId String?
+  // resumes Resumes[]
+  // activeResumeId String?
   experience String?
   skills String?
 }
@@ -94,19 +94,18 @@ type AppliedJobs{
   appliedAt DateTime @default(now())
 }
 
-model Resumes{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  url String
-  userProfileId String
-  userProfile UserProfile @relation(fields :[userProfileId], references: [userId], onDelete : Cascade)
-   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  @@index([userProfileId], name : "idx_userProfileId")
-}
+// model Resumes{
+//   id String @id @default(auto()) @map("_id") @db.ObjectId
+//   name String
+//   url String
+//   userProfileId String
+//   userProfile UserProfile @relation(fields :[userProfileId], references: [userId], onDelete : Cascade)
+//    createdAt DateTime @default(now())
+//   updatedAt DateTime @default(now())
+//   @@index([userProfileId], name : "idx_userProfileId")
+// }
 
 model Assessment {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String
-  type String?
 }
