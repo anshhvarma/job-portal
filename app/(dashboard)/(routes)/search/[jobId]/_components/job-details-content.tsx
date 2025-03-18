@@ -1,13 +1,17 @@
 "use client";
+import { Banner } from "@/components/banner";
 import Box from "@/components/box";
 import CustomBreadCrum from "@/components/custom-breadcrumb";
 import { Preview } from "@/components/preview";
 import { ApplyModal } from "@/components/ui/appy-modal";
 import { Button } from "@/components/ui/button";
 import { Company, Job, UserProfile } from "@prisma/client";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 interface JobDetailsContentProps {
   job: Job & { company: Company | null };
@@ -21,17 +25,49 @@ const JobDetailsContent = ({
 }: JobDetailsContentProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  const onApplied = async () => {
+    setIsLoading(true);
+    try {
+      await axios.patch(`/api/user/${userProfile?.userId}/appliedJobs`, jobId);
+
+      //send mail
+      await axios.post("/api/thankyou",{
+        fullName: userProfile?.fullName,
+        email : userProfile?.email ,
+      })
+
+
+    } catch (error) {
+      console.log((error as Error)?.message);
+      toast.error("Something wen wrong...!");
+    } finally {
+      setOpen(false);
+      setIsLoading(false);
+      router.refresh();
+    }
+  };
 
   return (
     <>
       <ApplyModal
         isOpen={open}
         onClose={() => setOpen(false)}
-        onConfirm={() => {}}
+        onConfirm={onApplied}
         loading={isLoading}
         userProfile={userProfile}
       />
 
+      {userProfile &&
+        userProfile?.appliedJobs?.some(
+          (appliedJobs) => appliedJobs.jobId === jobId
+        ) && (
+          <Banner
+            variant={"success"}
+            label="Thankyou! for applying. Your Application has been received and we're reviewing it carefully. we will be in touch soon with an update."
+          />
+        )}
       <Box className="mt-4">
         <CustomBreadCrum
           breadCrumbItem={[{ label: "Search", link: "/search" }]}
@@ -87,7 +123,10 @@ const JobDetailsContent = ({
               {!userProfile.appliedJobs.some(
                 (appliedJob) => appliedJob.jobId === jobId
               ) ? (
-                <Button className="text-sm bg-blue-700 hover:bg-blue-900 hover:shadow-sm" onClick={()=> setOpen(true)}>
+                <Button
+                  className="text-sm bg-blue-700 hover:bg-blue-900 hover:shadow-sm"
+                  onClick={() => setOpen(true)}
+                >
                   Apply
                 </Button>
               ) : (

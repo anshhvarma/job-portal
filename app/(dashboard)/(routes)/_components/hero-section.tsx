@@ -1,19 +1,19 @@
 'use client'
-import demoImg1 from "@/assets/design-example-1.png"
-import demoImg2 from "@/assets/design-example-2.png"
-import Image from "next/image"
-import Pointer from "@/components/Pointer"
-import { motion, useAnimate } from "framer-motion"
-import { useEffect } from "react"
+// import demoImg1 from "@/assets/design-example-1.png"
+// import demoImg2 from "@/assets/design-example-2.png"
+// import Image from "next/image"
+// import Pointer from "@/components/Pointer"
+import { useAnimate } from "framer-motion"
+// import { useEffect } from "react"
 import cursorYou from '@/assets/cursor-you.svg'
-
+useAnimate
 
 export default function HeroSection() {
 
-    const [ leftDesignScope, leftDesignanimate ] =useAnimate();
-    const [ leftPointerScope, leftPointeranimate ] =useAnimate();
-    const [ rightDesignScope, rightDesignanimate ] =useAnimate();
-    const [ rightPointerScope, rightPointeranimate ] =useAnimate();
+    // const [ leftDesignScope, leftDesignanimate ] =useAnimate();
+    // const [ leftPointerScope, leftPointeranimate ] =useAnimate();
+    // const [ rightDesignScope, rightDesignanimate ] =useAnimate();
+    // const [ rightPointerScope, rightPointeranimate ] =useAnimate();
 
     // useEffect(()=>{
     //     leftDesignanimate([

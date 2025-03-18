@@ -23,13 +23,13 @@ const ProfilePage = async () => {
       where:{
         userId
       },
-      include :{
-        resumes:{
-          orderBy:{
-            createdAt: "desc"
-          }   
-        }
-      }
+      // include :{
+      //   resumes:{
+      //     orderBy:{
+      //       createdAt: "desc"
+      //     }   
+      //   }
+      // }
     })
   return (
     <div className="flex-col p-4 md:p-8 items-center  justify-centerflex">
