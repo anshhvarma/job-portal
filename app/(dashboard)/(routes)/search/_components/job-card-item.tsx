@@ -135,7 +135,7 @@ const experienceData = [
                 {job.title}
               </p>
               <Link
-                href={"/company/${company?.id}"}
+                href={`/companies/${company?.id}`}
                 className="text-xs text-blue-500 w-full truncate"
               >
                 {company?.name}
