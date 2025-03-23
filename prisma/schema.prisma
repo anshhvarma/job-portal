@@ -108,4 +108,9 @@ type AppliedJobs{
 model Assessment {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String
+  type String
+  hobbies String?
+  interests String?
+  strengths String?
+  areasForImprovement String?
 }

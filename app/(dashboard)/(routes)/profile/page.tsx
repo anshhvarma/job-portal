@@ -16,7 +16,7 @@ import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { truncate } from "lodash";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Eye } from "lucide-react";
+import { ArrowRight, Eye } from "lucide-react";
 
 const ProfilePage = async () => {
   const { userId } = await auth();
@@ -113,6 +113,23 @@ const ProfilePage = async () => {
         <ContactForm initialData={profile} userId={userId} />
         <SkillsForm initialData={profile} userId={userId} />
       </Box>
+
+      <div className="flex flex-col items-center justify-center mt-12 p-8 bg-gradient-to-b from-gray-50 to-gray-100 rounded-lg shadow-sm border border-gray-200">
+      <div className="mb-4 p-3 bg-primary/10 rounded-full">
+        <ArrowRight className="w-6 h-6 text-primary" />
+      </div>
+      <h2 className="text-3xl font-bold text-gray-800 mb-3">Ready for your Assessment?</h2>
+      <p className="text-muted-foreground text-center max-w-md mb-6">
+        Take the next step in your journey by completing our comprehensive assessment.
+      </p>
+      <Link href="/assessment">
+        <Button className="px-6 py-6 text-lg group bg-blue-600" size="lg">
+          Start Assessment
+          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Button>
+      </Link>
+    </div>
+
 
       {/* applied job list */}
       <Box className="flex-col items-start justify-start mt-12">
