@@ -30,7 +30,7 @@ const guestRoutes = [
   {
     icons: Home,
     label: "Home",
-    href: "/",
+    href: "/home",
   },
   {
     icons: Compass,

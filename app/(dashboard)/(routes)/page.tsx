@@ -1,6 +1,5 @@
 import React from 'react'
 import HeroSection from './_components/hero-section'
-import Introduction from './_components/introduction-section'
 import Features from './_components/features-section'
 import Faqs from './_components/Faqs'
 import LogoTicker from './_components/LogoTicker'
@@ -9,9 +8,7 @@ const page = () => {
     <div className='bg-slate-100'>
       <HeroSection />
       <LogoTicker />
-      <Introduction />
       <Features />
-
       <Faqs />
     </div>
   )

@@ -128,6 +128,11 @@ try {
         }
     }
 
+    if(savedJobs){
+        query.where.savedUsers = {
+            has: userId,
+        }
+    }
 
     const jobs = await db.job.findMany(query);
     return jobs;
