@@ -33,7 +33,10 @@ const CompanyEditPage = async ({params}: {params: {companyId: string}}) => {
         }
       });
     
-      const categories = await db.category.findMany({
+      // const categories = await db.category.findMany({
+      //   orderBy: { name: "asc" }
+      // });
+      await db.category.findMany({
         orderBy: { name: "asc" }
       });
     

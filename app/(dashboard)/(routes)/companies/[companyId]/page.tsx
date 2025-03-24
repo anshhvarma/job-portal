@@ -1,5 +1,4 @@
 
-import { getJobs } from "@/actions/get-jobs";
 import Box from "@/components/box";
 import CustomBreadCrum from "@/components/custom-breadcrumb";
 import { db } from "@/lib/db";

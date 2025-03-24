@@ -44,7 +44,7 @@ const SkillsForm = ({ initialData, userId }: SkillsFormProps) => {
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong" + error);
     }
   }
 

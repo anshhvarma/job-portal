@@ -61,12 +61,12 @@ const CompanySocialForm = ({
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.patch(`/api/companies/${companyId}`, values);
+      await axios.patch(`/api/companies/${companyId}`, values);
       toast.success("Company Updates");
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("something went wrong");
+      toast.error("something went wrong" + error );
     }
   };
 
@@ -75,7 +75,7 @@ const CompanySocialForm = ({
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Company's Social
+        Company&apos;s Social
         <Button onClick={toggleEditing} variant={"ghost"}>
           {isEditing ? (
             <> Cancel </>

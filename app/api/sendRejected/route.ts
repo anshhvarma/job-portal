@@ -1,4 +1,4 @@
-import { compileSendRejectedTemplate, compileSendSelectedTemplate, compileThankyouEmailTemplate, sendMail } from "@/lib/mail";
+import { compileSendRejectedTemplate, sendMail } from "@/lib/mail";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {

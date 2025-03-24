@@ -5,11 +5,7 @@ import { motion } from "framer-motion";
 import { formatDistanceToNow } from "date-fns";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import Box from "@/components/box";
 import { useState } from "react";

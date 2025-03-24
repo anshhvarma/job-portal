@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ArrowLeft, Building2, File, LayoutDashboard, ListCheck } from "lucide-react";
+import { ArrowLeft, Building2, LayoutDashboard, ListCheck } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import JobPublishAction from "./_components/job-publish-action";

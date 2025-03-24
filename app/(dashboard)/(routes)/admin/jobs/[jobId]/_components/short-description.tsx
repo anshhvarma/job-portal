@@ -41,12 +41,12 @@ const ShortDescription = ({initialData, jobId} : ShortDescriptionProps) => {
 
   const onSubmit = async(values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.patch(`/api/jobs/${jobId}`, values)
+      await axios.patch(`/api/jobs/${jobId}`, values)
       toast.success("Job Updates")
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("something went wrong")
+      toast.error("something went wrong" + error)
     }
   }
 

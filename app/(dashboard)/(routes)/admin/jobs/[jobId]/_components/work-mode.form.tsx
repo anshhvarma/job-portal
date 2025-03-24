@@ -19,7 +19,7 @@ interface WorkModeFormProps{
   jobId: string;
 }
 
-let options =[
+const options =[
   {
     value: "remote",
     label: "Remote",
@@ -54,12 +54,12 @@ const WorkModeForm = ({initialData, jobId} : WorkModeFormProps) => {
 
   const onSubmit = async(values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.patch(`/api/jobs/${jobId}`, values)
+      await axios.patch(`/api/jobs/${jobId}`, values)
       toast.success("Job Updates")
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("something went wrong")
+      toast.error("something went wrong" + error)
     }
   }
 

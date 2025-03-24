@@ -4,7 +4,6 @@ import CustomBreadCrum from "@/components/custom-breadcrumb";
 import SearchContainer from "@/components/search-container";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { off } from "process";
 import PageContents from "../search/_components/page-contents";
 
 interface SearchProps {

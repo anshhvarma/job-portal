@@ -5,7 +5,6 @@ import { Preview } from "@/components/preview";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import getGenerativeAIResponse from "@/scripts/aistudio";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -45,12 +44,12 @@ const WhyJoinUs = ({ initialData, companyId }: WhyJoinUsProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.patch(`/api/companies/${companyId}`, values)
+      await axios.patch(`/api/companies/${companyId}`, values)
       toast.success("Company Updates")
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("something went wrong")
+      toast.error("something went wrong" + error)
     }
   }
 

@@ -51,12 +51,12 @@ const CoverImageForm = ({initialData, companyId} : CoverImageFormProps) => {
   
         uploadedcoverImage = uploadedImages[0].url;
       }
-      const response = await axios.patch(`/api/companies/${companyId}`, { coverImage: uploadedcoverImage });
+      await axios.patch(`/api/companies/${companyId}`, { coverImage: uploadedcoverImage });
       toast.success("Image Updated Successfully");
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong" + error);
     }
   };
   

@@ -1,5 +1,5 @@
 'use client'
-import { useAnimate } from "framer-motion"
+
 import cursorYou from '@/assets/cursor-you.svg'
 import { Button } from "@/components/ui/button"
 

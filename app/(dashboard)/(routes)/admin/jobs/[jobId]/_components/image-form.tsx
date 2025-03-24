@@ -51,12 +51,12 @@ const ImageForm = ({initialData, jobId} : ImageFormProps) => {
   
         uploadedImageUrl = uploadedImages[0].url;
       }
-      const response = await axios.patch(`/api/jobs/${jobId}`, { imageUrl: uploadedImageUrl });
+      await axios.patch(`/api/jobs/${jobId}`, { imageUrl: uploadedImageUrl });
       toast.success("Image Updated Successfully");
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong" + error);
     }
   };
   

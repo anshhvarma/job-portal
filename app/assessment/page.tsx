@@ -196,7 +196,7 @@ export default function CategorySelection(): JSX.Element {
                     <GraduationCap className="text-blue-600 h-6 w-6 mt-0.5 flex-shrink-0" />
                     <div>
                       <Label htmlFor="studentNoClarity" className="font-medium text-blue-800 text-lg cursor-pointer">Student Seeking Direction</Label>
-                      <p className="text-gray-600 mt-1">I'm uncertain about my career path and need help discovering suitable options</p>
+                      <p className="text-gray-600 mt-1">I&apos;m uncertain about my career path and need help discovering suitable options</p>
                     </div>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function CategorySelection(): JSX.Element {
           {step === "dashboard" && (
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-blue-800">Professional Dashboard</h2>
-              <p className="text-gray-600">Welcome to your personalized career dashboard. Let's determine your next steps.</p>
+              <p className="text-gray-600">Welcome to your personalized career dashboard. Let&apos;s determine your next steps.</p>
               
               <Alert className="bg-blue-50 border-blue-200 mt-4">
                 <AlertTitle className="text-blue-800 font-medium">What would you like to do?</AlertTitle>

@@ -10,13 +10,9 @@ import axios from "axios";
 import {
   BadgeCheck,
   Ban,
-  Eye,
   Loader,
-  Loader2,
   MoreHorizontal,
-  Pencil,
 } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 

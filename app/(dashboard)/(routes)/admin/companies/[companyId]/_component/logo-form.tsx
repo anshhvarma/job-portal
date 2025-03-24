@@ -51,12 +51,12 @@ const CompanyLogo = ({initialData, companyId} : CompanyLogoProps) => {
   
         uploadedlogo = uploadedImages[0].url;
       }
-      const response = await axios.patch(`/api/companies/${companyId}`, { logo: uploadedlogo });
+      await axios.patch(`/api/companies/${companyId}`, { logo: uploadedlogo });
       toast.success("Image Updated Successfully");
       toggleEditing();
       router.refresh();
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong" + error);
     }
   };
   

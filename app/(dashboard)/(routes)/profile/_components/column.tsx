@@ -1,15 +1,8 @@
 "use client";   
 import { ColumnDef } from "@tanstack/react-table";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, Eye, MoreHorizontal, Pencil } from "lucide-react";
+import { ArrowUpDown, Eye } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
   
 
 

@@ -19,7 +19,7 @@ interface YearsOfExpFormProps{
   jobId: string;
 }
 
-let options =[
+const options =[
   {
     value: "0",
     label: "Freshers",
