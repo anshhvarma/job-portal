@@ -106,16 +106,28 @@ type AppliedJobs{
 // }
 
 model Assessment {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String
-  hobbies String
-  interests String
-  strengths String
-  areasForImprovement String
-  currentRole String
-  careerGoals String
-  preferredLocation String
-  preferredIndustry String
-  skillAndQualifications String
-  workExperience String
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId                    String   
+  hobbies                   String[]
+  interests                 String[]
+  strengths                 String[]
+  areasForImprovement       String[]
+  currentRole               String
+  careerGoals               String
+  preferredLocation         String
+  preferredIndustry         String
+  skillAndQualifications    String[]
+  workExperience            String
+  createdAt                 DateTime @default(now())
+  // CareerSuggestion          CareerSuggestion[]
 }
+
+
+// model CareerSuggestion {
+//   id            String     @id @default(auto()) @map("_id") @db.ObjectId
+//   userId        String
+//   suggestions   String
+//   assessmentId  String     @db.ObjectId
+//   createdAt     DateTime   @default(now())
+//   assessment    Assessment @relation(fields: [assessmentId], references: [id])
+// }

@@ -31,7 +31,7 @@ export const HomeSearchContainer = () => {
           onChange={(e) => setTitle(e.target.value)}
           className="flex-1 text-lg font-sans bg-transparent outline-none border-none min-w-72 focus:outline-none focus:border:none"
         />
-
+  
         <Button onClick={handleClick} disabled={!title} className="bg-blue-700 hover:bg-blue-700" size={"icon"}>
             <Search className="w-5 h-5 min-w-5" />
 
