@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, KeyboardEvent } from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useUser } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -27,6 +27,13 @@ const assessmentSchema = z.object({
   skillAndQualifications: z.string().array().min(1, "Please add at least one skill or qualification"),
   workExperience: z.string().min(10, "Please provide details about your work experience")
 });
+
+// Type for the API response
+interface AssessmentResult {
+  recommendations?: string[];
+  matchPercentage?: number;
+  suggestedRoles?: string[];
+}
 
 // Dynamic Array Input Component
 const DynamicArrayInput = ({
@@ -62,7 +69,7 @@ const DynamicArrayInput = ({
           field.onChange(newValues);
         };
 
-        const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
           if (e.key === 'Enter') {
             e.preventDefault();
             addItem();
@@ -142,26 +149,25 @@ export default function CareerAssessmentForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof assessmentSchema>) => {
-    if (!user) {
-      toast.error('Please log in to submit your assessment');
-      return;
-    }
-
     setIsSubmitting(true);
     try {
+      // Submit to internal API only
       await axios.post('/api/assessment', values);
-      // await axios.post('/api/assessment/suggestion');
-      
       toast.success('Assessment submitted successfully!');
       router.push('/assessment/suggestion-page');
     } catch (error) {
+      if (error instanceof AxiosError) {
+        const errorMessage = error.response?.data?.message || 'Failed to submit assessment';
+        toast.error(errorMessage);
+      } else {
+        toast.error('An unexpected error occurred');
+      }
       console.error('Assessment submission error:', error);
-      toast.error('Failed to submit assessment. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
-
+  
   return (
     <div className="max-w-3xl mx-auto p-8 bg-white shadow-2xl rounded-2xl border-2 border-gray-100">
       <h1 className="text-3xl font-extrabold mb-8 text-center text-gray-800 tracking-tight">
