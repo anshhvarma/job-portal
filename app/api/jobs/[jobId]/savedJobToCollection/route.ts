@@ -2,49 +2,45 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export const PATCH = async(
+export const PATCH = async (
     req: Request,
-    {params} : {params : {jobId : string}}
-) =>{
+    { params }: { params: { jobId: string } }
+) => {
     try {
+        const { userId } = await auth();
 
-        const {userId } = await auth();
-        const {jobId} = params
-
-        if(!userId){
-            return new NextResponse("Unauthorized", {status: 401});
-        }
-        if(!jobId){
-            return new NextResponse("Job ID is missing", {status: 404});
+        if (!userId) {
+            return new NextResponse("Unauthorized", { status: 401 });
         }
 
-        const job = await db.job.findFirst({
-            where: {
-                id: jobId,
-                userId
-            }
-        })
+        const { jobId } = params;
 
-        if(!job){
-            return new NextResponse("Job not found", {status: 404});
+        if (!jobId) {
+            return new NextResponse("Job ID is missing", { status: 400 });
         }
 
+        // Find the job first
+        const existingJob = await db.job.findUnique({
+            where: { id: jobId }
+        });
 
-        const updatedData = {
-            savedUsers : job.savedUsers? {push: userId} : [userId]
+        if (!existingJob) {
+            return new NextResponse("Job not found", { status: 404 });
         }
 
+        // Update the job by adding the user to savedUsers
         const updatedJob = await db.job.update({
-            where:{
-                id: jobId,
-                userId
-            },
-            data: updatedData
-        })
+            where: { id: jobId },
+            data: {
+                savedUsers: {
+                    push: userId
+                }
+            }
+        });
 
-        return NextResponse.json("updatedData", {status: 200});
+        return NextResponse.json(updatedJob, { status: 200 });
     } catch (error) {
-        console.log(`[JOB_PUBLISH_PATCH] : ${error}`);
-        return new NextResponse("Internal Server Error", {status: 500});
+        console.error(`[SAVE_JOB_ERROR]: ${error}`);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 };

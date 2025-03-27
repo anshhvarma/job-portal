@@ -21,6 +21,7 @@ export const HomeSearchContainer = () => {
         })
         router.push(href);
     };
+    
   return (
     <div className="w-full items-center justify-center hidden md:flex mt-8 px-4">
       <Box className="w-3/4 rounded-full h-16 shadow-lg px-12 text-muted-foreground gap-3 bg-neutral-50">

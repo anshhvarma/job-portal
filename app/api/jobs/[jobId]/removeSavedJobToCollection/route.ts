@@ -3,50 +3,45 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export const PATCH = async (
-  req: Request,
-  { params }: { params: { jobId: string } }
+    req: Request,
+    { params }: { params: { jobId: string } }
 ) => {
-  try {
-    const { userId } = await auth();
-    const { jobId } = params;
+    try {
+        const { userId } = await auth();
 
-    if (!userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
+        if (!userId) {
+            return new NextResponse("Unauthorized", { status: 401 });
+        }
+
+        const { jobId } = params;
+
+        if (!jobId) {
+            return new NextResponse("Job ID is missing", { status: 400 });
+        }
+
+        // Find the job first
+        const existingJob = await db.job.findUnique({
+            where: { id: jobId }
+        });
+
+        if (!existingJob) {
+            return new NextResponse("Job not found", { status: 404 });
+        }
+
+        // Update the job by removing the user from savedUsers
+        const updatedJob = await db.job.update({
+            where: { id: jobId },
+            data: {
+                savedUsers: {
+                    // Remove the specific userId from the array
+                    set: existingJob.savedUsers.filter(id => id !== userId)
+                }
+            }
+        });
+
+        return NextResponse.json(updatedJob, { status: 200 });
+    } catch (error) {
+        console.error(`[REMOVE_SAVE_JOB_ERROR]: ${error}`);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
-    if (!jobId) {
-      return new NextResponse("Job ID is missing", { status: 404 });
-    }
-
-    const job = await db.job.findFirst({
-      where: {
-        id: jobId,
-        userId,
-      },
-    });
-
-    if (!job) {
-      return new NextResponse("Job not found", { status: 404 });
-    }
-
-    const userIndex = job.savedUsers.indexOf(userId);
-    let updatedJob;
-    if (userIndex !== -1) {
-      updatedJob = await db.job.update({
-        where: {
-          id: jobId,
-          userId,
-        },
-        data: {
-          savedUsers: {
-            set: job.savedUsers.filter((savedUserId) => savedUserId !== userId),
-          },
-        },
-      });
-    }
-
-    return NextResponse.json("updatedData", { status: 200 });
-  } catch (error) {
-    console.log(`[JOB_PUBLISH_PATCH] : ${error}`);
-    return new NextResponse("Internal Server Error", { status: 500 });
-  }
 };

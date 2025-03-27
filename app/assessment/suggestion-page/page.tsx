@@ -102,7 +102,8 @@ export default function SuggestionPage() {
         }
 
         const response = await axios.post(
-          'https://718d-35-197-110-121.ngrok-free.app/test-results',
+          //change api and add test-results to your api
+          'https://4ca1-34-125-199-136.ngrok-free.app/test-results',
           {
             hobbies: latestAssessment.hobbies.join(','),
             interests: latestAssessment.interests.join(','),
