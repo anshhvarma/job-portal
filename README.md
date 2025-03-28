@@ -23,7 +23,7 @@ The **Job Portal** is an AI-driven platform designed to help users find the most
 
 ## 📸 Screenshots and Demo Videos
 
-### 🎥 Demo Videos
+### 🎥 Demo Videos (Click below to see the video )
 - [AI-Powered Job Recommendations Demo](https://github.com/anshhvarma/job-portal/blob/c9e082abcef6c31579a94cf5f4bf342ae1b18b47/screen1.mp4)
 - [User-Friendly Assessments Walkthrough](https://github.com/anshhvarma/job-portal/blob/c9e082abcef6c31579a94cf5f4bf342ae1b18b47/screen2.mp4)
 
